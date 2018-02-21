@@ -38,9 +38,9 @@ let router = new Router({
       components: {default: SignUp, header: Heading}
     },
     {
-      path: '/poll/:pollid',
+      path: '/poll/:pollId',
       name: 'Poll',
-      componenet: Poll
+      components: {default: Poll, header: ''}
     }
   ]
 })
@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
   if (requiresAuth && !currentUser) next('login')
-  else if (!requiresAuth && currentUser) next('hello')
+  else if (!requiresAuth && currentUser && !to.path.includes('poll')) next('hello')
   else next()
 })
 
