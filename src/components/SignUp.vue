@@ -30,7 +30,6 @@
       }
     }
   }
-  /* eslint-disable */
 </script>
 
 <style scoped>
@@ -43,7 +42,6 @@
     padding: 15px;
   }
   button {
-    /* changed from 10 to 20*/
     margin-top: 20px;
     width: 10%;
     cursor: pointer;

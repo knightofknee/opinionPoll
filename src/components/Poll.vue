@@ -1,15 +1,19 @@
 <template>
 <div>
-  <h1>hiya partner</h1>
+  <h1>Pollater 3000 Poll</h1>
+  <br>
   <h2>Question: {{question}}</h2>
-  <h3>
-    <div v-for="(answer, index) in answers">
+    <div v-if="!showCount" v-for="(answer, index) in answers">
       <button :value="index" v-on:click="show($event)" >{{answer.answer}}</button>
       <h5 v-if="showCount">{{answer.count}}</h5>
     </div>
-  </h3>
-  <!-- <button v-if="!showCount" v-on:click="show($event)">Submit and reveal results</button> -->
-  <!-- change this to be a submit button, updating the count with a method -->
+    <br>
+    <h3 v-if="showCount">Results</h3>
+    <br>
+    <div v-if="showCount" v-for="(answer, index) in answers">
+      <h3 >{{answer.answer}}</h3>
+      <h5 v-if="showCount">{{answer.count}}</h5>
+    </div>
 
 </div>
 </template>
@@ -39,7 +43,6 @@ export default {
           this.answers = doc.data().answers
           })}
       })
-      // .catch(err => {alert('It appears you are looking for a poll that does not exist: ' + err)})
     },
     methods: {
       show: function(event) {
@@ -51,15 +54,9 @@ export default {
         })
         .then(() => {console.log('success')})
         .catch(console.log)
-        // .where(firebase.firestore.FieldPath.documentId(), "==", this.$route.params.pollId)
-        // .set()
-        // console.log('test', pollReference)
       }
     }
 }
-
-      // .get()
-      // .then((querySnapshot) => {
 </script>
 
 <style scoped>

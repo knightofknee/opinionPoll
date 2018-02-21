@@ -22,13 +22,11 @@
       login: function(){
         firebase.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          // alert('You have successfully signed in!')
           this.$router.replace('/hello')})
         .catch(err => {alert('We hit a snag: ' + err.message)})
       }
     }
   }
-  /* eslint-disable */
 </script>
 
 <style scoped>

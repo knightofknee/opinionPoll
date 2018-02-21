@@ -24,16 +24,6 @@
           </tr>
         </tbody>
     </table>
-    <!-- <div class="columns" v-for="(poll, index) in this.polls">
-        <div v-bind:key="poll.id" class="column">{{poll.id}}</div>
-        <div v-bind:key="index" class="column">{{poll.data.question}}</div>
-        <div v-bind:key="index" class="column">
-          <div v-for="(answer, index2) in poll.answers">
-            <div>ddd{{answer.answer}}</div>
-            <div>-{{answer.count}}</div>
-          </div>
-      </div>
-    </div> -->
     <div class="enter-poll">
     <h3>To create a new poll, enter a question and carot(^) delimited potential answers</h3>
     <h3 v-if="this.pollNumber">Your new poll number is {{this.pollNumber}}, note it for future use</h3>
@@ -92,7 +82,7 @@ export default {
   },
   created() {
     db.collection('Polls')
-    .where('createdUser', '==', firebase.auth().currentUser.email) // insert request user number here
+    .where('createdUser', '==', firebase.auth().currentUser.email)
     .get()
     .then((querySnapshot) => {
       let count = 0;
@@ -105,14 +95,10 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .table th {
   text-align: center;
 }
-/* .table td {
-  border-right: 2px solid black;
-} */
 
 td {
   text-align: center;
