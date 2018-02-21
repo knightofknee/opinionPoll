@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <img src="http://images.all-free-download.com/images/graphicthumb/hd_flowers_photo_04_hd_picture_169264.jpg">
+    <h1>Pollater 3000</h1>
     <router-view/>
   </div>
 </template>

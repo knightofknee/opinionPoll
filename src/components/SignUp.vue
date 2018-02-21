@@ -1,17 +1,18 @@
 <template>
-  <div class="login">
-    <h3>Sign In</h3>
+  <div class="sign-up">
+    <h3>Create New Account</h3>
     <input v-model="email" type="text" placeholder="Email"><br>
     <input v-model="password" type="password" placeholder="Password"><br>
-    <button v-on:click="login" >Log In</button>
-    <p>You don't have an account? You can <router-link to ="/sign-up">create one here</router-link></p>
+    <button v-on:click="signUp">Sign Up</button>
+    <span><router-link to="/login"> back to login</router-link></span>
   </div>
 </template>
 
 <script>
   import firebase from 'firebase'
+
   export default {
-    name: 'login',
+    name: 'signUp',
     data: function() {
       return {
         email: '',
@@ -19,12 +20,13 @@
       }
     },
     methods: {
-      login: function(){
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+      signUp: function() {
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          // alert('You have successfully signed in!')
-          this.$router.replace('/hello')})
-        .catch(err => {alert('We hit a snag: ' + err.message)})
+          this.$router.replace('hello')})
+        .catch(err => {
+          console.log(err)
+          alert('no account created, error: ' + err.message)})
       }
     }
   }
@@ -32,7 +34,7 @@
 </script>
 
 <style scoped>
-  .login {
+  .sign-up {
     margin-top: 10px;
   }
   input {
@@ -41,17 +43,15 @@
     padding: 15px;
   }
   button {
+    /* changed from 10 to 20*/
     margin-top: 20px;
     width: 10%;
     cursor: pointer;
   }
-  p {
-    margin-top: 40px;
-    font-size: 13px;
-  }
-  p a {
-    text-decoration: underline;
-    cursor: pointer;
+  span {
+    display: block;
+    margin-top: 20px;
+    font-size: 11px;
   }
 </style>
 
