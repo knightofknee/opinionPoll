@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import ManagePolls from '@/components/ManagePolls'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
+import Poll from '@/components/Poll'
+import Heading from '@/components/Heading'
 import firebase from 'firebase'
 
 Vue.use(Router)
@@ -20,7 +22,7 @@ let router = new Router({
     {
       path: '/hello',
       name: 'ManagePolls',
-      component: ManagePolls,
+      components: {default: ManagePolls, header: Heading},
       meta: {
         requiresAuth: true
       }
@@ -28,12 +30,17 @@ let router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      components: {default: Login, header: Heading}
     },
     {
       path: '/sign-up',
       name: 'SignUp',
-      component: SignUp
+      components: {default: SignUp, header: Heading}
+    },
+    {
+      path: '/poll/:pollid',
+      name: 'Poll',
+      componenet: Poll
     }
   ]
 })

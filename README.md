@@ -79,4 +79,7 @@ npm run unit
 
 # run all tests
 npm test
+
+# deploy to firebase
+firebase deploy
 ```
